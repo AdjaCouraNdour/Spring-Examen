@@ -10,15 +10,6 @@ import lombok.Setter;
 public class DetteClientResponse {
     private Long id;
 
-    @Column(unique = true)
-    private String tel;
-
-    private String nom;
-
-    private String telephone;
-
-    private String adresse;
-
     private String date;
     private double montantDette;
     private double montantPaye;
