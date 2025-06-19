@@ -65,7 +65,7 @@ public class DetteControllerImpl implements DetteController {
     public ResponseEntity<Map<String, Object>> findAlldetteByClientId(Long id, int page, int size) {
        Pageable pageable = PageRequest.of(page, size);
 
-        Page<Dette> dettesPage = detteService.findAllByClientId(id, pageable);
+        Page<DetteClientResponse> dettesPage = detteService.findAllByClientId(id, pageable);
         Page<DetteClientResponse> response = dettesPage.map(detteMapper::toDto);
 
         return new ResponseEntity<>(
