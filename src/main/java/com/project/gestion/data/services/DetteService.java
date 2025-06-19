@@ -10,5 +10,5 @@ import com.project.gestion.web.dto.Request.DetteCreateRequest;
 public interface DetteService extends Service<Dette> {
 
     Dette create(DetteCreateRequest object,Long clientId) ;
-    Page<Dette> findAllByClientId(Long clientId, Pageable pageable);
+    Page<DetteClientResponse> findAllByClientId(Long clientId, Pageable pageable);
 }

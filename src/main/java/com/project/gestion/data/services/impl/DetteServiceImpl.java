@@ -14,6 +14,7 @@ import com.project.gestion.data.services.DetteService;
 import com.project.gestion.utils.exceptions.EntityNotFoundExecption;
 import com.project.gestion.utils.mapper.DetteMapper;
 import com.project.gestion.web.dto.Request.DetteCreateRequest;
+import com.project.gestion.web.dto.Response.DetteClientResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -54,9 +55,27 @@ public class DetteServiceImpl implements DetteService {
     }
 
     @Override
-    public Page<Dette> findAllByClientId(Long clientId, Pageable pageable) {
-        return detteRepository.findByClientId(clientId, pageable);
+    public Page<DetteClientResponse> findAllByClientId(Long clientId, Pageable pageable) {
+        Page<Dette> dettes = detteRepository.findByClientId(clientId, pageable);
+
+        return dettes.map(e -> {
+            DetteClientResponse dto = new DetteClientResponse();
+            dto.setId(e.getId());
+            dto.setDate(e.getDate().toString());
+            dto.setMontantDette(e.getMontantDette());
+            dto.setMontantPaye(e.getMontantPaye());
+            dto.setMontantRestant(e.getMontantRestant());
+
+            clientRepository.findById(e.getClient().getId()).ifPresent(u -> {
+                dto.setNom(u.getNom());
+                dto.setTelephone(u.getTelephone());
+                dto.setAdresse(u.getAdresse());
+            });
+
+            return dto;
+        });
     }
+
 
 
 

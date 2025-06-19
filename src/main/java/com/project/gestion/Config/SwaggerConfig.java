@@ -16,16 +16,9 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI().info(new Info()
-                .title("Gestion de stock")
+                .title("Gestion")
                 .version(version)
-                .description("Gestion de stock"));
+                .description("Gestion"));
     }
 
-    // @Bean
-    // public GroupedOpenApi groupedOpenApi() {
-    // return GroupedOpenApi
-    // .builder()
-    // .group("Gestion de stock")
-    // .build();
-    // }
 }

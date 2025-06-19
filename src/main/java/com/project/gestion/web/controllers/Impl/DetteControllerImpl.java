@@ -17,7 +17,7 @@ import com.project.gestion.data.services.DetteService;
 import com.project.gestion.utils.mapper.DetteMapper;
 import com.project.gestion.web.controllers.DetteController;
 import com.project.gestion.web.dto.Request.DetteCreateRequest;
-import com.project.gestion.web.dto.Response.ClientDetteResponse;
+import com.project.gestion.web.dto.Response.DetteClientResponse;
 import com.project.gestion.web.dto.Response.RestResponse;
 
 import lombok.RequiredArgsConstructor;
@@ -66,7 +66,7 @@ public class DetteControllerImpl implements DetteController {
        Pageable pageable = PageRequest.of(page, size);
 
         Page<Dette> dettesPage = detteService.findAllByClientId(id, pageable);
-        Page<ClientDetteResponse> response = dettesPage.map(detteMapper::toDto);
+        Page<DetteClientResponse> response = dettesPage.map(detteMapper::toDto);
 
         return new ResponseEntity<>(
                 RestResponse.response(
